@@ -6,14 +6,11 @@
 # For detailed instructions on this file read the config.yml-documentation at
 # https://wpdistillery.org/documentation/config-yml-documentation/
 #
-# File Version: 1.6.4
+# File Version: 1.8.3
 
 
 # INSTALLATION
 #################################################################
-
-# WordPress folder
-wpfolder: public
 
 # WordPress version
 wpversion: latest
@@ -41,7 +38,7 @@ db:
 #################################################################
 
 wpsettings:
-  url: wpdistillery.dev
+  url: wpdistillery.vm
   title: Example Title
   description: Example Description
   permalink_structure: "/%postname%/"
@@ -58,14 +55,19 @@ wpsettings:
   # automatic conversion of smilies
   convert_smilies: false
 
-# THEME
+# THEMES
 #################################################################
 
-# theme to install, choose new name in 'rename' or leave empty
+# install a custom theme via url, rename it and remove the default themes
 theme:
   name: WPSeed
-  rename: ""
   url: "https://github.com/flurinduerst/WPSeed/archive/master.zip"
+  rename: ""
+  remove:
+    - twentyfifteen
+    - twentysixteen
+    - twentyseventeen
+
 
 # PLUGINS
 #################################################################
@@ -83,16 +85,10 @@ plugins_active:
 # plugins to install
 plugins_inactive:
   #development
-  - custom-post-type-ui
   - search-and-replace
-  - capability-manager-enhanced
-  #administration
-  - adminimize
-  - admin-menu-editor
-  - admin-menu-reorder
-  - wordpress-seo
+  # seo
+  - autodescription
   #security/backup
-  - wp-security-audit-log
   - backwpup
 
 # WPDISTILLERY SETUP
@@ -105,8 +101,7 @@ setup:
   theme: true
   plugins: true
   cleanup: true
-  # adjust what data you want to be deleted within the cleanup (required `cleanup: true`)
+  # adjust what data you want to be deleted within the cleanup (requires `cleanup: true`)
   comment: true
   posts: true
   files: true
-  themes: true
